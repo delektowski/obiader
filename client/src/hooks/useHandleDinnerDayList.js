@@ -26,16 +26,17 @@ export function useHandleDinnerDayList() {
   }
 
   function getEventsData() {
-    axios.get("http://localhost:2021/eventsData").then((res) => {
+    axios.get("http://139.162.131.141:2021/eventsData").then((res) => {
       setDinnerDayList(res.data.eventsData);
     });
   }
 
   function saveEventData(eventData) {
-    axios.post("http://localhost:2021/eventsData", eventData).then((_) => {
+    axios.post("http://139.162.131.141:2021/eventsData", eventData).then((_) => {
       getEventsData();
     });
   }
 
   return [dinnerDayList, getEventsData, handleDinnerDayList];
 }
+
