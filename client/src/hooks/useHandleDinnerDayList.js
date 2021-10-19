@@ -36,6 +36,7 @@ export function useHandleDinnerDayList() {
       getEventsData();
     });
   }
+  
 
   return [dinnerDayList, getEventsData, handleDinnerDayList];
 }
