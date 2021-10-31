@@ -28,7 +28,7 @@ const MyCalendar = () => {
 
   useEffect(() => {
     getEventsData();
-  }, [getEventsData]);
+  },[getEventsData]);
 
   return (
     <div>

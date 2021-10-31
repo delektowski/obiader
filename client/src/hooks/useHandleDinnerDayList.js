@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import axios from "axios";
 
 export function useHandleDinnerDayList() {
@@ -25,19 +25,29 @@ export function useHandleDinnerDayList() {
     saveEventData(dinnerDay);
   }
 
-  function getEventsData() {
-    axios.get("https://139.162.131.141:2021/eventsData").then((res) => {
-      setDinnerDayList(res.data.eventsData);
-    });
-  }
+  const getEventsData = useCallback(() => {
+    axios
+      .get("http://localhost:2021/eventsData", {
+        headers: {
+      
+          "content-type": "application/json",
+          accept: "*/*",
+      
+        },
+      })
+      .then((res) => {
+        console.log("res", res);
+        setDinnerDayList(res.data.eventsData);
+      });
+  }, []);
 
   function saveEventData(eventData) {
-    axios.post("https://139.162.131.141:2021/eventsData", eventData).then((_) => {
-      getEventsData();
-    });
+    axios
+      .post("http://139.162.131.141:2021/eventsData", eventData)
+      .then((_) => {
+        getEventsData();
+      });
   }
-  
 
   return [dinnerDayList, getEventsData, handleDinnerDayList];
 }
-
