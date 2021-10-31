@@ -27,7 +27,7 @@ export function useHandleDinnerDayList() {
 
   const getEventsData = useCallback(() => {
     axios
-      .get("http://localhost:2021/eventsData", {
+      .get("http://139.162.131.141:2021/eventsData", {
         headers: {
       
           "content-type": "application/json",
